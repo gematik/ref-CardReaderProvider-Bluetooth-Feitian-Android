@@ -1,0 +1,95 @@
+@startuml
+
+    package de.gematik.ti.cardreader.provider.bluetooth.feitian.control {
+      class CardStatusHandler {
+          {static} - LOG : Logger
+          + CardStatusHandler()
+          + handleMessage()
+          + informAboutCardPresent()
+      }
+    }
+
+    package android.os {
+        class Handler {
+            {static} - FIND_POTENTIAL_LEAKS : boolean
+            {static} - TAG : String
+            {static} - MAIN_THREAD_HANDLER : Handler
+            ~ mLooper : Looper
+            ~ mQueue : MessageQueue
+            ~ mAsynchronous : boolean
+            ~ mMessenger : IMessenger
+            + handleMessage()
+            + dispatchMessage()
+            + Handler()
+            {static} + createAsync()
+            {static} + getMain()
+            {static} + mainIfNull()
+            + getTraceName()
+            + getMessageName()
+            + obtainMessage()
+            + post()
+            + postAtTime()
+            + postDelayed()
+            + postAtFrontOfQueue()
+            + runWithScissors()
+            + removeCallbacks()
+            + sendMessage()
+            + sendEmptyMessage()
+            + sendEmptyMessageDelayed()
+            + sendEmptyMessageAtTime()
+            + sendMessageDelayed()
+            + sendMessageAtTime()
+            + sendMessageAtFrontOfQueue()
+            + executeOrSendMessage()
+            - enqueueMessage()
+            + removeMessages()
+            + removeCallbacksAndMessages()
+            + hasMessages()
+            + hasMessagesOrCallbacks()
+            + hasMessages()
+            + hasCallbacks()
+            + getLooper()
+            + dump()
+            + dumpMine()
+            + toString()
+            ~ getIMessenger()
+            {static} - getPostMessage()
+            {static} - handleCallback()
+        }
+      }
+
+
+      package android.os {
+        interface Callback {
+            {abstract} + handleMessage()
+        }
+      }
+
+
+      package android.os {
+        class MessengerImpl {
+            + send()
+        }
+      }
+
+
+      package android.os {
+        class BlockingRunnable {
+            - mTask : Runnable
+            - mDone : boolean
+            + BlockingRunnable()
+            + run()
+            + postAndWait()
+        }
+      }
+
+
+      Handler o-- Callback : mCallback
+      Handler +-down- Callback
+      Handler +-down- MessengerImpl
+      Handler +-down- BlockingRunnable
+      BlockingRunnable -up-|> Runnable
+
+    CardStatusHandler -up-|> Handler
+
+@enduml

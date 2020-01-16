@@ -1,0 +1,30 @@
+@startuml
+
+package de.gematik.ti.cardreader.provider.bluetooth.feitian.entities {
+      class FeitianCard {
+          - bluetoothCard : Card
+          - feitianCardAtr : byte[]
+          {static} - MANAGE_CHANNEL_COMMAND_OPEN : CommandAPDU
+          {static} - RESPONSE_SUCCESS : int
+          - exclusiveThread : Thread
+          - props : Properties
+          - cardStatusHandler : Handler
+          + FeitianCard()
+          + getATR()
+          + getProtocol()
+          + getBasicChannel()
+          + openLogicalChannel()
+          ~ transceive()
+          + beginExclusive()
+          + endExclusive()
+          + transmitControlCommand()
+          + disconnect()
+          + checkExclusive()
+          + getBluetoothCard()
+          ~ checkCardOpen()
+      }
+    }
+
+    FeitianCard -up-|> Card
+
+@enduml

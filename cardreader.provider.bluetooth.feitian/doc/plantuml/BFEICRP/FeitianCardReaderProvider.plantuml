@@ -1,0 +1,14 @@
+@startuml
+
+package de.gematik.ti.cardreader.provider.bluetooth.feitian.control {
+      class FeitianCardReaderProvider {
+          - providerDescriptor : ProviderDescriptor
+          + FeitianCardReaderProvider()
+          + getCardReaderController()
+          + getDescriptor()
+      }
+    }
+
+  FeitianCardReaderProvider -up-|> ICardReaderControllerProvider
+
+@enduml

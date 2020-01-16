@@ -1,0 +1,239 @@
+include::config.adoc[]
+
+== Overview
+
+ifndef::useCachePlantuml[]
+
+.FeitianBluetoothCardReaderProvider
+[plantuml,BFEICRP/generated/overview,png,caption="{classdia-caption} {counter:class}: ",650]
+----
+include::{plantumldir}/BFEICRP/overview.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.FeitianBluetoothCardReaderProvider
+image::BFEICRP/generated/overview.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+
+=== Integration
+
+The Feitian Bluetooth CardReaderProvider needs a descriptor behind `YOUR.PROVIDER\src\main\resources\META-INF\services` with filename
+`de.gematik.ti.cardreader.provider.spi.ICardReaderControllerProvider` and the content of the package and class which implements the service provider interface
+`de.gematik.ti.cardreader.provider.bluetooth.feithian.control.FeitianCardReaderProvider`.
+
+== Hardware
+
+The integrated Feitian Combo SDK supports the following FEITAN Readers: bR301,iR301,bR301BLE,bR500.
+
+== Control
+
+=== FeitianCardReaderProvider
+
+// tag::FeitianCardReaderProvider[]
+
+The FeitianCardReaderProvider class needs implementation of the interface 'ICardReaderControllerProvider' to handle listener and provide methods to inform connected listeners about card reader changes.
+ifndef::useCachePlantuml[]
+
+.FeitianCardReaderProvider
+[plantuml,BFEICRP/generated/FeitianCardReaderProvider,png,caption="{classdia-caption} {counter:class}: ",300]
+----
+include::{plantumldir}/BFEICRP/FeitianCardReaderProvider.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.FeitianCardReaderProvider
+image::BFEICRP/generated/FeitianCardReaderProvider.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+
+
+// end::FeitianCardReaderProvider[]
+
+=== FeitianCardReaderController
+// tag::FeitianCardReaderController[]
+
+The FeitianCardReaderController class extends the abstract class `'AbstractCardReaderController' to handle necessary permissions and checking if the application context is set.
+Returns a list with currently connected Feitian cardReaders and informs about Reader connection and disconnection.
+ifndef::useCachePlantuml[]
+
+.FeitianCardReaderController
+[plantuml,BFEICRP/generated/FeitianCardReaderController,png,caption="{classdia-caption} {counter:class}: ",300]
+----
+include::{plantumldir}/BFEICRP/FeitianCardReaderController.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.FeitianCardReaderController
+image::BFEICRP/generated/FeitianCardReaderController.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+
+// end::FeitianCardReaderController[]
+
+=== FeitianBluetoothReceiver
+
+// tag::FeitianBluetoothReceiver[]
+
+The FeitianBluetoothReceiver class extends the BroadCastReceiver class that receives and handles broadcast intents sent by {@link android.content.Context#sendBroadcast(Intent)}.
+The actions of the intents that are being handled are changes in the state of the bluetooth adapter (enable / change) as well as connect and disconnect a bluetooth device.
+ifndef::useCachePlantuml[]
+
+.FeitianBluetoothReceiver
+[plantuml,BFEICRP/generated/FeitianBluetoothReceiver,png,caption="{classdia-caption} {counter:class}: ",300]
+----
+include::{plantumldir}/BFEICRP/FeitianBluetoothReceiver.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.FeitianBluetoothReceiver
+image::BFEICRP/generated/FeitianBluetoothReceiver.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+
+// end::FeitianBluetoothReceiver[]
+
+=== FeitianConnector
+
+// tag::FeitianConnector[]
+Creates a Socket to the connected Feitian bluetooth device.
+ifndef::useCachePlantuml[]
+
+.FeitianConnector
+[plantuml,BFEICRP/generated/FeitianConnector,png,caption="{classdia-caption} {counter:class}: ",300]
+----
+include::{plantumldir}/BFEICRP/FeitianConnector.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.FeitianConnector
+image::BFEICRP/generated/FeitianConnector.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+// end::FeitianConnector[]
+
+
+== Entities
+
+=== FeitianCard
+
+// tag::FeitianCard[]
+
+A Feithian Bluetooth Smart Card with which a connection has been established.
+Card objects are obtained by calling {@link FeitianConnector#run()} if a socket to the bluetooth device is connected.
+Works as adapter to the Feitian Bluetooth SDK.
+
+ifndef::useCachePlantuml[]
+
+.FeitianCard
+[plantuml,BFEICRP/generated/FeitianCard,png,caption="{classdia-caption} {counter:class}: ",300]
+----
+include::{plantumldir}/BFEICRP/FeitianCard.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.FeitianCard
+image::BFEICRP/generated/FeitianCard.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+// end::FeitianCard[]
+
+=== FeitianCardReader
+
+// tag::FeitianCardReader[]
+
+A Bluetooth Smart Card Reader, sometimes referred to as a Bluetooth Card Reader implements the Interface ICardReader.
+ifndef::useCachePlantuml[]
+
+.FeitianCardReader
+[plantuml,BFEICRP/generated/FeitianCardReader,png,caption="{classdia-caption} {counter:class}: ",300]
+----
+include::{plantumldir}/BFEICRP/FeitianCardReader.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.FeitianCardReader
+image::BFEICRP/generated/FeitianCardReader.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+// end::FeitianCardReader[]
+
+=== FeitianCardChannel
+
+// tag::FeitianCardChannel[]
+
+A logical channel connection to a Bluetooth Smart Card.
+It is used to exchange APDUs with a Smart Card using Bluetooth/CCID.
+A BluetoothCardChannel object can be obtained by calling the method FeitianCard.getBasicChannel or FeitianCard.openLogicalChannel
+ifndef::useCachePlantuml[]
+
+.FeitianCardChannel
+[plantuml,BFEICRP/generated/FeitianCardChannel,png,caption="{classdia-caption} {counter:class}: ",300]
+----
+include::{plantumldir}/BFEICRP/FeitianCardChannel.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.FeitianCardChannel
+image::BFEICRP/generated/FeitianCardChannel.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+// end::FeitianCardChannel[]
+
+=== CardStatusHandler
+
+// tag::CardStatusHandler[]
+
+Each FeitianCardReader needs an Handler for Card Event.
+This Handler compute the card reader card events and transmit the suited events to EventBus subscriber.
+ifndef::useCachePlantuml[]
+
+.CardStatusHandler
+[plantuml,BFEICRP/generated/cardstatushandler,png,caption="{classdia-caption} {counter:class}: ",300]
+----
+include::{plantumldir}/BFEICRP/cardstatushandler.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.CardStatusHandler
+image::BFEICRP/generated/cardstatushandler.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+
+// end::CardStatusHandler[]

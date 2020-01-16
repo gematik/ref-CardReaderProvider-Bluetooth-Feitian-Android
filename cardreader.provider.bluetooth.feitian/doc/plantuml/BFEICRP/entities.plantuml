@@ -1,0 +1,96 @@
+@startuml
+
+
+
+  package de.gematik.ti.cardreader.provider.bluetooth.feitian {
+    package de.gematik.ti.cardreader.provider.bluetooth.feitian.entities {
+      class FeitianCard {
+          - bluetoothCard : Card
+          - feitianCardAtr : byte[]
+          {static} - MANAGE_CHANNEL_COMMAND_OPEN : CommandAPDU
+          {static} - RESPONSE_SUCCESS : int
+          - exclusiveThread : Thread
+          + FeitianCard()
+          + getATR()
+          + getProtocol()
+          + getBasicChannel()
+          + openLogicalChannel()
+          ~ transceive()
+          + beginExclusive()
+          + endExclusive()
+          + transmitControlCommand()
+          + disconnect()
+          ~ checkExclusive()
+          + getBluetoothCard()
+          ~ checkCardOpen()
+      }
+    }
+  }
+  
+
+  package de.gematik.ti.cardreader.provider.bluetooth.feitian {
+    package de.gematik.ti.cardreader.provider.bluetooth.feitian.entities {
+      class FeitianCardChannel {
+          - channelNo : int
+          {static} - MANAGE_CHANNEL_COMMAND_CLOSE : CommandAPDU
+          {static} - RESPONSE_SUCCESS : int
+          {static} - LOW_CHANNEL_NUMBER_VALUE : int
+          {static} - MAX_CHANNEL_NO_VALUE : int
+          - channelClosed : boolean
+          + FeitianCardChannel()
+          + FeitianCardChannel()
+          + getCard()
+          + getChannelNumber()
+          + transmit()
+          + transmit()
+          + close()
+          - modifyCommandForLogicalChannel()
+          - checkChannelClosed()
+      }
+    }
+  }
+  
+
+  package de.gematik.ti.cardreader.provider.bluetooth.feitian {
+    package de.gematik.ti.cardreader.provider.bluetooth.feitian.entities {
+      class FeitianCardReader {
+          {static} - LOG : Logger
+          - name : String
+          {static} - PROTOCOL_T1 : String
+          - pairedDevice : BluetoothDevice
+          - cardStatus : int
+          - isPowerOn : boolean
+          + FeitianCardReader()
+          ~ connectSocket()
+          + initialize()
+          + isInitialized()
+          + connect()
+          + connect()
+          + getName()
+          + isCardPresent()
+          + waitForCardAbsent()
+          + waitForCardPresent()
+          + setName()
+          + getCardStatus()
+          + isPowerOn()
+      }
+    }
+  }
+  
+
+  FeitianCard o-- FeitianCardChannel : basicChannel
+  FeitianCardChannel o-- FeitianCard : feitianCard
+  FeitianCardReader -up-|> ICardReader
+  FeitianCardReader o-- FeitianCard : feitianCard
+  FeitianCardReader o-- FeitianConnector : connector
+  FeitianCardReader o-- CardStatusHandler : cardStatusHandler
+
+
+
+
+
+
+
+
+
+@enduml

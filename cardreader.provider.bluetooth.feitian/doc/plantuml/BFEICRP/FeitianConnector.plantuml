@@ -1,0 +1,17 @@
+@startuml
+
+package de.gematik.ti.cardreader.provider.bluetooth.feitian.control {
+      class FeitianConnector {
+          {static} - LOG : Logger
+          - mSocket : BluetoothSocket
+          - inputStream : InputStream
+          - outputStream : OutputStream
+          - feitianDevice : BluetoothDevice
+          + FeitianConnector()
+          + run()
+          - createSocket()
+          + getFeitianCard()
+      }
+    }
+
+@enduml

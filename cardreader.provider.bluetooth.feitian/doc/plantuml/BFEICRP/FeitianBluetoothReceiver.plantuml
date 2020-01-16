@@ -1,0 +1,15 @@
+@startuml
+
+package de.gematik.ti.cardreader.provider.bluetooth.feitian.control {
+      class FeitianBluetoothReceiver {
+          {static} - LOG : Logger
+          + onReceive()
+          - onDeviceDetached()
+          - onDeviceAttached()
+      }
+    }
+
+   FeitianBluetoothReceiver -up-|> BroadcastReceiver
+
+
+@enduml

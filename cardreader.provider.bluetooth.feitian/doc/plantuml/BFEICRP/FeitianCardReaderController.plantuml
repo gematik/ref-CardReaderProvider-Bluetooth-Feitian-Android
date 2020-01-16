@@ -1,0 +1,43 @@
+@startuml
+
+    package de.gematik.ti.cardreader.provider.bluetooth.feitian.control {
+      class FeitianCardReaderController {
+          {static} - LOG : Logger
+          {static} - instance : FeitianCardReaderController
+          - cardReaders : Map<String, ICardReader>
+          - bluetoothAdapter : BluetoothAdapter
+          - pairedDevices : Set<BluetoothDevice>
+          - context : Context
+          - FeitianCardReaderController()
+          {static} + getInstance()
+          + getCardReaders()
+          - init()
+          - intitializeBluetoothAdapter()
+          - createReceiver()
+          + createCardEventTransmitter()
+          - readDevices()
+          - checkUuids()
+          - addNewAndInform()
+          ~ removeAndInform()
+          + checkAdapter()
+          + actualizeReaderList()
+          + actualizeSocketToDevice()
+      }
+    }
+
+    package de.gematik.ti.cardreader.provider.bluetooth.feitian.control {
+      class CardEventTransmitter {
+          - cardReader : ICardReader
+          ~ CardEventTransmitter()
+          + informAboutCardPresent()
+          + informAboutCardAbsent()
+          + informAboutCardTimeout()
+          + informAboutCardUnknown()
+      }
+    }
+
+    FeitianCardReaderController -up-|> AbstractAndroidCardReaderController
+    FeitianCardReaderController +-down- CardEventTransmitter
+
+
+@enduml

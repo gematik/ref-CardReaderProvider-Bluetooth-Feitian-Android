@@ -1,0 +1,8 @@
+ifndef::javadoc[]
+include::config.adoc[]
+
+== Introduction
+
+endif::javadoc[]
+
+This part describes the usage of low level CardReaderProvider for feitian bluetooth CardReader in your application.

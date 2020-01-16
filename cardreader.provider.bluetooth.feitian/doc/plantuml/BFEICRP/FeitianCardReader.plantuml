@@ -1,0 +1,23 @@
+@startuml
+
+package de.gematik.ti.cardreader.provider.bluetooth.feitian.entities {
+      class FeitianCardReader {
+          - name : String
+          {static} - PROTOCOL_T1 : String
+          + FeitianCardReader()
+          + initialize()
+          + isInitialized()
+          + connect()
+          + connect()
+          + getName()
+          + isCardPresent()
+          + waitForCardAbsent()
+          + waitForCardPresent()
+          + setName()
+      }
+    }
+
+    FeitianCardReader -up-|> ICardReader
+
+
+@enduml
