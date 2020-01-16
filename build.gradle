@@ -22,7 +22,6 @@ description = """Provider for Feitian Bluetooth CardReader"""
 
 allprojects {
     repositories {
-        maven { url 'https://jitpack.io' }
         google()
         jcenter()
     }

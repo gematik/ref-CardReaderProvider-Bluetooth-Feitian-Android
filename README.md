@@ -112,7 +112,7 @@ To use CardReaderProvider for feitian bluetooth CardReader in a project, you nee
 **Gradle dependency settings to use CardReaderProvider for feitian bluetooth CardReader library.**
 
     dependencies {
-        implementation group: 'de.gematik.ti', name: 'cardreader.provider.bluetooth.feitian', version: '1.1.3'
+        implementation group: 'de.gematik.ti', name: 'cardreader.provider.bluetooth.feitian', version: '1.1.4'
     }
 
 **Maven dependency settings to use CardReaderProvider for feitian bluetooth CardReader library.**
@@ -121,6 +121,6 @@ To use CardReaderProvider for feitian bluetooth CardReader in a project, you nee
         <dependency>
             <groupId>de.gematik.ti</groupId>
             <artifactId>cardreader.provider.bluetooth.feitian</artifactId>
-            <version>1.1.3</version>
+            <version>1.1.4</version>
         </dependency>
     </dependencies>

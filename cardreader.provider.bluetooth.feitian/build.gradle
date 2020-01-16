@@ -58,12 +58,11 @@ jacoco {
 }
 
 dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
     //implementation 'com.feitian.android:bR301:2.0.9:release'
     implementation "org.yaml:snakeyaml:1.9"
 
-
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     //############# Gematik #############
     implementation group: 'de.gematik.ti', name: 'openhealthcard.common', version: rootProject
             .ext.openhealthcard_common
@@ -199,13 +198,3 @@ artifacts {
     archives adocJar
     archives javadocJar
 }
-
-android.testOptions.unitTests.all {
-    // Configure whether failing tests should fail the build
-    ignoreFailures false
-
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-    }
-}
-
